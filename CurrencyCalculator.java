@@ -30,17 +30,15 @@ public class CurrencyCalculator {
     JSONObject currencies = currencyData.getJSONObject("rates");
     Double basevalue;
     Double sum;
-    System.out.println(currencies.get(currencyChosen).getClass());
-    if (currentCurrency == currencyData.get("base")){
+
+    if (currentCurrency == currencyData.getString("base")){
      basevalue = amount;
     }
     else{
-      Double x = new Double(currencies.get(currentCurrency));
-     basevalue = amount * x;
+     basevalue = amount * currencies.getDouble(currentCurrency);
     }
-    Double currency2 = new Double(currencies.get(currencyChosen));
 
-    sum = basevalue * currency2;
+    sum = basevalue * currencies.getDouble(currencyChosen);
     return sum;
 
   }
